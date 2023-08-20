@@ -20,7 +20,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [windows-latest]
     name: ${{ matrix.os }} build
     runs-on: ${{ matrix.os }}
 
@@ -38,4 +38,4 @@ jobs:
         gradle-home-cache-cleanup: true
     
     - name: Execute build with Gradle wrapper
-      run: chmod +x ./gradlew build clean test
+      run: chmod +x gradle build clean test
