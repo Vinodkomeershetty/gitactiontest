@@ -45,6 +45,6 @@ jobs:
        uses: actions/upload-artifact@v2
        with:
             name: reports
-            path: GradleReports/
+            path: ./GradleReports/
 
 
