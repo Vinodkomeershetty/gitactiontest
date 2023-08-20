@@ -32,12 +32,11 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@v1 # v2.6.0
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
       with:
-        distributions-cache-enabled: true
-        dependencies-cache-enabled: true
-        configuration-cache-enabled: true
-        gradle-version: wrapper
+        gradle-version: current     ### This version will be installed and added to PATH, so used for cache-cleanup
         gradle-home-cache-cleanup: true
-        cache-read-only: false
-        arguments: build clean test
+    
+    - name: Execute build with Gradle wrapper
+      run: ./gradlew build clean test
