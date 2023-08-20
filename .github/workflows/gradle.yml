@@ -37,4 +37,7 @@ jobs:
         distributions-cache-enabled: true
         dependencies-cache-enabled: true
         configuration-cache-enabled: true
+        gradle-version: wrapper
+        gradle-home-cache-cleanup: true
+        cache-read-only: false
         arguments: build clean test
