@@ -37,9 +37,9 @@ application {
         // Use TestNG for unit tests.
         useTestNG() {
             useDefaultListeners = true
-            outputDirectory = file("$projectDir/TestNG_Reports")
+            outputDirectory = file("${buildDir}/TestNG_Reports")
         }
-        reports.html.setDestination(file("$projectDir/GradleReports"))
+        reports.html.setDestination(file("${buildDir}/GradleReports"))
     }
 
     application {
