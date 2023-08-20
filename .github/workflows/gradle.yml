@@ -41,10 +41,10 @@ jobs:
     - name: Execute build with Gradle wrapper
       run: ./gradlew build clean test
 
-      -name: Upload Artifacts
+    -  name: Upload Artifacts
        uses: actions/upload-artifact@v2
        with:
-          name: reports
-          path: GradleReports/
+            name: reports
+            path: GradleReports/
 
 
