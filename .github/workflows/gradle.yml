@@ -43,6 +43,7 @@ jobs:
 
     -  name: Upload Artifacts
        uses: actions/upload-artifact@v2
+       if: always()
        with:
             name: reports
             path: ./GradleReports/
