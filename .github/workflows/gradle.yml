@@ -46,6 +46,6 @@ jobs:
        if: always()
        with:
             name: reports
-            path: ./GradleReports/
+            path: ./build/GradleReports/
 
 
