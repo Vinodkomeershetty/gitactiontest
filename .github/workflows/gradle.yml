@@ -38,4 +38,4 @@ jobs:
         gradle-home-cache-cleanup: true
     
     - name: Execute build with Gradle wrapper
-      run: ./gradlew build clean test
+      run: chmod +x ./gradlew build clean test
