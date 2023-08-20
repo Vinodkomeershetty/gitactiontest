@@ -8,7 +8,7 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    id 'application'
+    id 'java'
 }
 
 repositories {
@@ -28,21 +28,19 @@ dependencies {
     implementation 'io.github.bonigarcia:webdrivermanager:5.3.0'
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'com.ga.App'
-}
+//application {
+//    // Define the main class for the application.
+//    mainClass = 'com.ga.AppTest'
+//}
 
     tasks.named('test') {
+        System.out.println("================+${buildDir}")
         // Use TestNG for unit tests.
         useTestNG() {
+            System.out.println("================+${buildDir}")
+
             useDefaultListeners = true
             outputDirectory = file("${buildDir}/TestNG_Reports")
         }
         reports.html.setDestination(file("${buildDir}/GradleReports"))
-    }
-
-    application {
-        // Define the main class for the application.
-        mainClass = 'com.example.App'
     }
