@@ -12,10 +12,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
-permissions:
-  contents: read
-
+    
 jobs:
   build:
     strategy:
@@ -46,6 +43,4 @@ jobs:
        if: always()
        with:
             name: reports
-            path: app/build/GradleReports/
-
-
+            path: build/GradleReports/
