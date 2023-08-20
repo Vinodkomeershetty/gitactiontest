@@ -20,7 +20,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [windows-latest]
     name: ${{ matrix.os }} build
     runs-on: ${{ matrix.os }}
 
@@ -31,10 +31,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@v1 # v2.6.0
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
       with:
-        distributions-cache-enabled: true
-        dependencies-cache-enabled: true
-        configuration-cache-enabled: true
-        arguments: build clean test
+        gradle-version: 7.4.2     ### This version will be installed and added to PATH, so used for cache-cleanup
+    - name: Execute build with Gradle wrapper
+      run: chmod +x gradle build clean test
