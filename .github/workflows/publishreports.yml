@@ -2,7 +2,7 @@ name: Publish HTML Report
 
 on:
   workflow_run:
-    workflows: ["Manual workflow"] # Replace with your main workflow name
+    workflows: ["Java CI with Gradle"] # Replace with your main workflow name
     types:
       - completed
 
