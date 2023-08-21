@@ -37,7 +37,7 @@ jobs:
            uses: actions/upload-artifact@v2
            if: always()
            with:
-                name: reports
+                name: test-report
                 path: build/GradleReports/
     Publish-HTML-Report:
       needs: RunTests-and-Generate-Reports
