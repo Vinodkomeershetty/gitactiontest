@@ -15,7 +15,6 @@ on:
     
 jobs:
     RunTests-and-Generate-Reports:
-       continue-on-failure:
         runs-on: windows-latest
         steps:
         - uses: actions/checkout@v3
@@ -42,6 +41,7 @@ jobs:
                 path: build/GradleReports/
     Publish-HTML-Report:
       needs: RunTests-and-Generate-Reports
+      if: always()
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repository
