@@ -46,7 +46,7 @@ jobs:
               name: reports
               path: build/GradleReports/
 Publish HTML Report:
-needs: Run Tests and Generate Reports:
+needs: Run Tests and Generate Reports
 runs-on: ubuntu-latest
 steps:
       - name: Checkout Repository
