@@ -33,7 +33,12 @@
          with:
            publish_dir: ./build/GradleReports # Adjust to the directory containing your built site
            github_token: ${{ secrets.GITHUB_TOKEN }}
-       - name: upload artifcats    
+       - name: upload artifcats
+         uses: actions/upload-artifact@v2
+         if: always()
+         with:
+            name: test-report
+            path: build/GradleReports/
      nwtask:  
          needs: deploy
          if: needs.deploy.result == 'success' 
