@@ -41,11 +41,11 @@ jobs:
           with:
            publish_dir: build/GradleReports # Adjust to the directory containing your built site
            github_token: ${{ secrets.GITHUB_TOKEN }}
-    Publish-HTML-Report:
-      needs: RunTests-and-Generate-Reports
-      if: always()
-      runs-on: ubuntu-latest
-      steps:
+    # Publish-HTML-Report:
+    #   needs: RunTests-and-Generate-Reports
+    #   if: always()
+    #   runs-on: ubuntu-latest
+    #   steps:
         # - name: Checkout Repository
         #   uses: actions/checkout@v2
 
