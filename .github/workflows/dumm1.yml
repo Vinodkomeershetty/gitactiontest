@@ -43,9 +43,10 @@
           - name: Install pandoc
             run: |
                sudo apt-get install -y pandoc
+               echo `basename "$filename"`
           - name: Install pandora
             run: |
-               pandoc -f html -t markdown_strict -o test-report.md ./index.html
+               pandoc -f html -t markdown_strict -o test-report.md /home/runner/work/gitactiontest/gitactiontest/build/GradleReports/index.html
                echo ":: set-output name=report::$(cat $1)" 
           - name: disp html summ in report page
             run: |
