@@ -69,7 +69,7 @@ jobs:
           uses: peaceiris/actions-gh-pages@v3
           with:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-            publish_dir: ./build/ # Change to the directory containing your HTML report 
+            publish_dir: ./build/GradleReports/index.html # Change to the directory containing your HTML report 
             name: test-report
         - name: Post the link to the report
           if: always()
