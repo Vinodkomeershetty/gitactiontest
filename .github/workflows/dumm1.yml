@@ -1,0 +1,35 @@
+
+   name: Deploy to GitHub Pages
+
+   on:
+     push:
+       branches:
+         - main # Adjust to the branch you want to trigger deployment from
+
+   jobs:
+     deploy:
+       runs-on: ubuntu-latest
+
+       steps:
+       - name: Checkout Repository
+         uses: actions/checkout@v2
+
+       - name: Set up JDK 11
+         uses: actions/setup-java@v3
+         with:
+            java-version: '11'
+            distribution: 'temurin'
+       - name: Setup Gradle
+         uses: gradle/gradle-build-action@v2
+         with:
+            gradle-version: 7.4.2     ### This version will be installed and added to PATH, so used for cache-cleanup
+       - name: Make gradlew executable
+         run: chmod +x ./gradlew
+       - name: Execute build with Gradle wrapper
+         run: ./gradlew build clean test
+
+       - name: Deploy to GitHub Pages
+         uses: peaceiris/actions-gh-pages@v4
+         with:
+           publish_dir: ./build # Adjust to the directory containing your built site
+           github_token: ${{ secrets.GITHUB_TOKEN }}
