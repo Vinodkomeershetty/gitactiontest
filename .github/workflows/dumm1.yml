@@ -33,4 +33,5 @@
          uses: peaceiris/actions-gh-pages@v3
          with:
            publish_dir: ./build # Adjust to the directory containing your built site
+           state: success
            github_token: ${{ secrets.GITHUB_TOKEN }}
