@@ -80,5 +80,5 @@ jobs:
           with: 
             authToken: ${{secrets.GITHUB_TOKEN}}
             context: 'Test report'
-            sha: ${{ github.event.pull_request.head.sha }}
+            publish_dir: ./build  # default: public
             target_url: vinodkomeershetty.github.io/gitactiontest/${{ github.run_number }}
