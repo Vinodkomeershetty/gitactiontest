@@ -56,11 +56,11 @@ jobs:
             name: test-report # Replace with the name of your artifact
 
       # Configure Git and GitHub Pages
-        - name: Set up Git and Configure User
-          run: |
-            git config user.name "GitHub Actions"
-            git config user.email "komeershettyvinod@gmail.com"
-            echo ".github/workflows" >> .gitignore
+        # - name: Set up Git and Configure User
+        #   run: |
+        #     git config user.name "GitHub Actions"
+        #     git config user.email "komeershettyvinod@gmail.com"
+        #     echo ".github/workflows" >> .gitignore
 
       # # Create a new branch to publish the HTML report
       #   - name: Create Report Branch
