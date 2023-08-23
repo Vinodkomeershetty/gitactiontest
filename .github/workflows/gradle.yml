@@ -63,7 +63,7 @@ jobs:
         - name: Create Report Branch
           run: |
             git checkout -b gh-pages
-            git add .
+            git add build/GradleReports
             git commit -m "Publish HTML report"
             git push -u origin gh-pages
 
