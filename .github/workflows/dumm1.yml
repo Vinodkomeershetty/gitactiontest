@@ -29,42 +29,28 @@
          run: ./gradlew build clean test      
        - name: Dqwq
          if: always()
-         continue-on-error: true
          uses: peaceiris/actions-gh-pages@v3
          with:
            publish_dir: ./build/GradleReports # Adjust to the directory containing your built site
            github_token: ${{ secrets.GITHUB_TOKEN }}
-       - name: copy artc 
-         run: | 
-            mkdir -p build echo "fiel fi copy" > build/GradleReports/index.html
-       - name: artifcats copy
-       - uses: actions/upload-artifact@v2
-         with: 
-            name: rep
-            path: build/GradleReports/
+       - name: upload artifcats    
      nwtask:  
          needs: deploy
          if: needs.deploy.result == 'success' 
          runs-on: ubuntu-latest
-       
          steps:
-         - name: Download HTML Report Artifact
-         - uses: actions/download-artifact@v2
-           with:
-               name: rep
-         - name: Install pythib
-         - uses: actions/setup-python@v3
-         - name: Install pandoc
-           run: |
+          - name: Install pythib
+            uses: actions/setup-python@v3
+          - name: Install pandoc
+            run: |
                sudo apt-get install -y pandoc
-               echo `basename "$filename"`
-         - name: Install pandora
-           run: |
-                 pandoc -f html -t markdown_strict -o test-report.md /home/runner/work/gitactiontest/gitactiontest/build/GradleReports/index.html
-                 echo ":: set-output name=report::$(cat $1)" 
-         - name: disp html summ in report page
-           run: |
-                 chmod +x display-report.sh
-                 ./display-report.sh
-                 test-report.md
-           id: display_report
+          - name: Install pandora
+            run: |
+               pandoc -f html -t markdown_strict -o test-report.md  ./build/GradleReports/index.html
+               echo ":: set-output name=report::$(cat $1)" 
+          - name: disp html summ in report page
+            run: |
+               chmod +x display-report.sh
+               ./display-report.sh
+               test-report.md
+            id: display_report
