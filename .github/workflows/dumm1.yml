@@ -35,6 +35,8 @@
            publish_dir: ./build/GradleReports # Adjust to the directory containing your built site
            state: success
            github_token: ${{ secrets.GITHUB_TOKEN }}
+       - name:  Install pythib
+         uses:  actions/setup-python@v4 
        - name:  Install pandoc
          run: |
             sudo apt-get install -y pandoc
