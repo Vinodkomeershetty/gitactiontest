@@ -58,6 +58,7 @@ jobs:
 
       # Create a new branch to publish the HTML report
         - name: Create Report Branch
+          continue-on-error: true
           run: |
             git checkout -b gh-pages
             git add .
