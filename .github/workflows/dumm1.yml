@@ -4,7 +4,7 @@
    on:
      push:
        branches:
-         - master1 # Adjust to the branch you want to trigger deployment from
+         - master # Adjust to the branch you want to trigger deployment from
 
    jobs:
      deploy:
