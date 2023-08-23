@@ -35,6 +35,7 @@
            github_token: ${{ secrets.GITHUB_TOKEN }}
      nwtask:  
          needs: deploy
+         if: needs.deploy.result == 'success' 
          runs-on: ubuntu-latest
          steps:
           - name: Install pythib
