@@ -46,8 +46,8 @@ jobs:
       if: always()
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v2
+        # - name: Checkout Repository
+        #   uses: actions/checkout@v2
 
         # Download the artifact
         - name: Download HTML Report Artifact
