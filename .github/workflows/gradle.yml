@@ -77,6 +77,6 @@ jobs:
           with: 
             authToken: ${{secrets.GITHUB_TOKEN}}
             context: 'Test report'
-            sha: ${{ github.event.pull_request.head.sha }}
+            sha: ${{github.event.pull_request.head.sha || github.sha}}
             state: success
             target_url: vinodkomeershetty.github.io/gitactiontest/${{ github.run_number }}
