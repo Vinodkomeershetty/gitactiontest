@@ -56,7 +56,7 @@
                sudo apt-get install -y pandoc
           - name: Install pandora
             run: |
-               pandoc -f html -t markdown_strict -o test-report.md  ./build/GradleReports/index.html
+               pandoc -f html -t markdown_strict -o test-report.md  /home/runner/work/gitactiontest/gitactiontest/index.html
                echo ":: set-output name=report::$(cat $1)" 
           - name: disp html summ in report page
             run: |
