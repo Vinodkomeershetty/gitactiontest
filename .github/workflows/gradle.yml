@@ -56,14 +56,14 @@ jobs:
             git config user.email "komeershettyvinod@gmail.com"
             echo ".github/workflows" >> .gitignore
 
-      # Create a new branch to publish the HTML report
-        - name: Create Report Branch
-          continue-on-error: true
-          run: |
-            git checkout -b gh-pages
-            git add .
-            git commit -m "Publish HTML report"
-            git push -u origin gh-pages
+      # # Create a new branch to publish the HTML report
+      #   - name: Create Report Branch
+      #     continue-on-error: true
+      #     run: |
+      #       git checkout -b gh-pages
+      #       git add .
+      #       git commit -am "Publish HTML report"
+      #       git push -u origin gh-pages
 
         # Publish the HTML report to GitHub Pages
         - name: Publish to GitHub Pages
