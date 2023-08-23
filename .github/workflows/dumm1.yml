@@ -61,6 +61,5 @@
           - name: disp html summ in report page
             run: |
                chmod +x display-report.sh
-               ./display-report.sh
-               test-report.md
+               ./display-report.sh test-report.md
             id: display_report
