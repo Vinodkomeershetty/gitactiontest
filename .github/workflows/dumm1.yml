@@ -28,7 +28,7 @@
        - name: Execute build with Gradle wrapper
          run: ./gradlew build clean test      
        - name: Dqwq
-         if: always()
+         continue-on-error: true
          uses: peaceiris/actions-gh-pages@v3
          with:
            publish_dir: ./build/GradleReports # Adjust to the directory containing your built site
