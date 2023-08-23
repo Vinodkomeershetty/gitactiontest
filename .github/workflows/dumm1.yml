@@ -33,24 +33,24 @@
          with:
            publish_dir: ./build/GradleReports # Adjust to the directory containing your built site
            github_token: ${{ secrets.GITHUB_TOKEN }}
-     # nwtask:  
-     #     needs: deploy
-     #     if: needs.deploy.result == 'success' 
-     #     runs-on: ubuntu-latest
-         # steps:
-       - name: Install pythib
-         uses: actions/setup-python@v3
-       - name: Install pandoc
-         run: |
+     nwtask:  
+         needs: deploy
+         if: needs.deploy.result == 'success' 
+         runs-on: ubuntu-latest
+         steps:
+          - name: Install pythib
+            uses: actions/setup-python@v3
+          - name: Install pandoc
+            run: |
                sudo apt-get install -y pandoc
                echo `basename "$filename"`
-       - name: Install pandora
-         run: |
-               pandoc -f html -t markdown_strict -o test-report.md /home/runner/work/gitactiontest/gitactiontest/build/GradleReports/index.html
-               echo ":: set-output name=report::$(cat $1)" 
-       - name: disp html summ in report page
-         run: |
-               chmod +x display-report.sh
-               ./display-report.sh
-               test-report.md
-         id: display_report
+          - name: Install pandora
+            run: |
+                 pandoc -f html -t markdown_strict -o test-report.md /home/runner/work/gitactiontest/gitactiontest/build/GradleReports/index.html
+                 echo ":: set-output name=report::$(cat $1)" 
+          - name: disp html summ in report page
+            run: |
+                 chmod +x display-report.sh
+                 ./display-report.sh
+                 test-report.md
+            id: display_report
