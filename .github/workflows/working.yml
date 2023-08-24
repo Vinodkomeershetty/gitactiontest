@@ -1,0 +1,69 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+
+name: Java CI with Gradle
+on:
+  push:
+    branches: [ "master" ]    
+jobs:
+    RunTests-and-Generate-Reports:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Set up JDK 11
+          uses: actions/setup-java@v3
+          with:
+            java-version: '11'
+            distribution: 'temurin'
+        - name: Setup Gradle
+          uses: gradle/gradle-build-action@v2
+          with:
+            gradle-version: 7.4.2     ### This version will be installed and added to PATH, so used for cache-cleanup
+        - name: Make gradlew executable
+          run: chmod +x ./gradlew
+      
+        - name: Execute build with Gradle wrapper
+          run: ./gradlew build clean test
+
+        -  name: Upload Artifacts
+           uses: actions/upload-artifact@v2
+           if: always()
+           with:
+                name: test-report
+                path: build/GradleReports/
+        - name: Dqwq
+          if: always()
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+           publish_dir: build/GradleReports # Adjust to the directory containing your built site
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+    Publish-HTML-Report:
+      needs: RunTests-and-Generate-Reports
+      if: always()
+      runs-on: ubuntu-latest
+      steps:
+
+        - name: Deploy to GitHub Pages
+          run: |
+            git config --global user.email "komeershettyvinod@gmail.com"
+            git config --global user.name "vinodkomeershetty"
+            git checkout --orphan gh-pages
+            git rm -rf .
+            mv /home/runner/work/gitactiontest/gitactiontest/* .
+            git add .
+            git commit -m "Deploy HTML report to GitHub Pages"
+            git push -f origin gh-pages
+            
+        - name: Post the link to the report
+          if: always()
+          uses: Sibz/github-status-action@v1
+          with: 
+            authToken: ${{secrets.GITHUB_TOKEN}}
+            context: 'Test report'
+            sha: ${{github.event.pull_request.head.sha || github.sha}}
+            state: success
+            target_url: https://vinodkomeershetty.github.io/gitactiontest/index.html
