@@ -45,54 +45,54 @@ jobs:
 
 
            
-    Publish-HTML-Report:
-      needs: RunTests-and-Generate-Reports
-      if: always()
-      runs-on: ubuntu-latest
-      steps:
-          - name: Get test results history
-            uses: actions/checkout@v3
-            if: always()
-            continue-on-error: true
-            with:
+    # Publish-HTML-Report:
+    #   needs: RunTests-and-Generate-Reports
+    #   if: always()
+    #   runs-on: ubuntu-latest
+    #   steps:
+        - name: Get test results history
+          uses: actions/checkout@v3
+          if: always()
+          continue-on-error: true
+          with:
               ref: gh-pages
               path: gh-pages
 
-          - name: Test marketplace action
-            uses: PavanMudigonda/html-reporter-github-pages@v1.0
-            id: test-report
-            with:
-              test_results: build/GradleReports
-              gh_pages: gh-pages
-              results_history: results-history
+        - name: Test marketplace action
+          uses: PavanMudigonda/html-reporter-github-pages@v1.0
+          id: test-report
+          with:
+            test_results: build/GradleReports
+            gh_pages: gh-pages
+            results_history: results-history
           
-          - name: List Files in workspace
-            if: always()
-            run: |
+        - name: List Files in workspace
+          if: always()
+          run: |
               ls -R;   
 
-          - name: Publish Github Pages
-            if: ${{ always() }}
-            uses: peaceiris/actions-gh-pages@v3.8.0
-            with:
+        - name: Publish Github Pages
+          if: ${{ always() }}
+          uses: peaceiris/actions-gh-pages@v3.8.0
+          with:
               github_token: ${{ secrets.GITHUB_TOKEN }}
               publish_branch: gh-pages
               publish_dir: results-history
               keep_files: true
               
-          - name: Post the link to the report
-            if: always()
-            uses: Sibz/github-status-action@v1
-            with: 
+        - name: Post the link to the report
+          if: always()
+          uses: Sibz/github-status-action@v1
+          with: 
               authToken: ${{secrets.GITHUB_TOKEN}}
               context: 'Test report'
               state: 'success'
               sha: ${{github.event.pull_request.head.sha || github.sha}}
-              target_url: https://Vinodkomeershetty.github.io/gitactiontest/${{ github.run_number }}/index.html
+              target_url: https://Vinodkomeershetty.github.io/gitactiontest/${{ github.run_number }}
 
-          - name: GH Pages Push
-            uses: PavanMudigonda/html-reporter-github-pages/composite@v1.1
-            with:
+        - name: GH Pages Push
+          uses: PavanMudigonda/html-reporter-github-pages/composite@v1.1
+          with:
               test_results: build/GradleReports
               keep_reports: 20
               external_repository: https://Vinodkomeershetty.github.io/gitactiontest
