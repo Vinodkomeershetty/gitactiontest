@@ -35,12 +35,12 @@ jobs:
            with:
                 name: test-report
                 path: build/GradleReports/
-        - name: Dqwq
-          if: always()
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-           publish_dir: build/GradleReports # Adjust to the directory containing your built site
-           github_token: ${{ secrets.GITHUB_TOKEN }}
+        # - name: Dqwq
+        #   if: always()
+        #   uses: peaceiris/actions-gh-pages@v3
+        #   with:
+        #    publish_dir: build/GradleReports # Adjust to the directory containing your built site
+        #    github_token: ${{ secrets.GITHUB_TOKEN }}
            
     Publish-HTML-Report:
       needs: RunTests-and-Generate-Reports
@@ -65,7 +65,7 @@ jobs:
 
           - name: Publish Github Pages
             if: ${{ always() }}
-            uses: peaceiris/actions-gh-pages@v3.8.0
+            uses: peaceiris/actions-gh-pages@v3
             with:
               github_token: ${{ secrets.GITHUB_TOKEN }}
               publish_branch: gh-pages
