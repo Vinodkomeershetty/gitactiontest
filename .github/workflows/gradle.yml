@@ -34,7 +34,7 @@ jobs:
            if: always()
            with:
                 name: test-report
-                path: build/GradleReports/
+                path: build/
         # - name: Dqwq
         #   if: always()
         #   uses: peaceiris/actions-gh-pages@v3
@@ -62,13 +62,13 @@ jobs:
             uses: PavanMudigonda/html-reporter-github-pages@v1.0
             id: test-report
             with:
-              test_results: build/GradleReports
+              test_results: GradleReports
               gh_pages: gh-pages
               results_history: results-history
 
           - name: Publish Github Pages
             if: ${{ always() }}
-            uses: peaceiris/actions-gh-pages@v3
+            uses: peaceiris/actions-gh-pages@v3.8.0
             with:
               github_token: ${{ secrets.GITHUB_TOKEN }}
               publish_branch: gh-pages
@@ -83,7 +83,13 @@ jobs:
               context: 'Test report'
               state: 'success'
               sha: ${{github.event.pull_request.head.sha || github.sha}}
-              target_url: https://Vinodkomeershetty.github.io/html-reporter-github-pages/${{ github.run_number }}   
+              target_url: Vinodkomeershetty.github.io/gitactiontest/${{ github.run_number }}
+
+          - name: GH Pages Push
+            uses: Vinodkomeershetty.github.io/gitactiontest/composite@v1.1
+            with:
+              test_results: test-results
+              keep_reports: 20      
         # # Download the artifact
         # - name: Download HTML Report Artifact
         #   uses: actions/download-artifact@v2
