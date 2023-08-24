@@ -42,9 +42,6 @@ jobs:
         #    publish_dir: build/GradleReports # Adjust to the directory containing your built site
         #    github_token: ${{ secrets.GITHUB_TOKEN }}
 
-
-
-           
     # Publish-HTML-Report:
     #   needs: RunTests-and-Generate-Reports
     #   if: always()
@@ -58,6 +55,12 @@ jobs:
               ref: gh-pages
               path: gh-pages
 
+              
+        - name: List Files in workspace
+          if: always()
+          run: |
+              ls -R;   
+              
         - name: Test marketplace action
           uses: PavanMudigonda/html-reporter-github-pages@v1.0
           id: test-report
@@ -93,7 +96,7 @@ jobs:
         - name: GH Pages Push
           uses: PavanMudigonda/html-reporter-github-pages/composite@v1.1
           with:
-              test_results: ./build/GradleReports
+              test_results: ./build/GradleReports/
               keep_reports: 20
               external_repository: https://Vinodkomeershetty.github.io/gitactiontest/
         # # Download the artifact
