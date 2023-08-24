@@ -69,7 +69,7 @@ jobs:
       #       git checkout -b gh-pages
       #       git add .
       #       git commit -am "Publish HTML report"
-      #       git push -u origin gh-pages+${{ github.run_number }}
+      #       git push -u origin gh-pages
 
         # Publish the HTML report to GitHub Pages
         # - name: Publish to GitHub Pages
@@ -83,12 +83,12 @@ jobs:
           run: |
             git config --global user.email "komeershettyvinod@gmail.com"
             git config --global user.name "vinodkomeershetty"
-            git checkout --orphan gh-pages+${{ github.run_number }}
+            git checkout --orphan gh-pages
             git rm -rf .
             mv /home/runner/work/gitactiontest/gitactiontest/* .
             git add .
             git commit -m "Deploy HTML report to GitHub Pages"
-            git push -f origin gh-pages+${{ github.run_number }}
+            git push -f origin gh-pages
             
         - name: Post the link to the report
           if: always()
