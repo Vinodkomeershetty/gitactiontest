@@ -99,6 +99,11 @@ jobs:
               test_results: ./build/GradleReports/
               keep_reports: 20
               external_repository: https://Vinodkomeershetty.github.io/gitactiontest/
+        - name: print link
+          run: |
+            echo "Results Link: $LINK"
+          env:
+            LINK: https://google.com
         # # Download the artifact
         # - name: Download HTML Report Artifact
         #   uses: actions/download-artifact@v2
