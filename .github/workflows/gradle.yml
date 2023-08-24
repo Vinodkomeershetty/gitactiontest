@@ -41,19 +41,50 @@ jobs:
           with:
            publish_dir: build/GradleReports # Adjust to the directory containing your built site
            github_token: ${{ secrets.GITHUB_TOKEN }}
+           
     Publish-HTML-Report:
       needs: RunTests-and-Generate-Reports
       if: always()
       runs-on: ubuntu-latest
       steps:
-        # - name: Checkout Repository
-        #   uses: actions/checkout@v2
+          - name: Get test results history
+            uses: actions/checkout@v3
+            if: always()
+            continue-on-error: true
+            with:
+              ref: gh-pages
+              path: gh-pages
 
-        # Download the artifact
-        - name: Download HTML Report Artifact
-          uses: actions/download-artifact@v2
-          with:
-            name: test-report # Replace with the name of your artifact
+          - name: Test marketplace action
+            uses: PavanMudigonda/html-reporter-github-pages@v1.0
+            id: test-report
+            with:
+              test_results: build/GradleReports
+              gh_pages: gh-pages
+              results_history: results-history
+
+          - name: Publish Github Pages
+            if: ${{ always() }}
+            uses: peaceiris/actions-gh-pages@v3.8.0
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              publish_branch: gh-pages
+              publish_dir: results-history
+              keep_files: true  
+          - name: Post the link to the report
+            if: always()
+            uses: Sibz/github-status-action@v1
+            with: 
+              authToken: ${{secrets.GITHUB_TOKEN}}
+              context: 'Test report'
+              state: 'success'
+              sha: ${{github.event.pull_request.head.sha || github.sha}}
+              target_url: PavanMudigonda.github.io/html-reporter-github-pages/${{ github.run_number }}   
+        # # Download the artifact
+        # - name: Download HTML Report Artifact
+        #   uses: actions/download-artifact@v2
+        #   with:
+        #     name: test-report # Replace with the name of your artifact
 
       # Configure Git and GitHub Pages
         # - name: Set up Git and Configure User
@@ -79,23 +110,23 @@ jobs:
         #     publish_dir: /home/runner/work/gitactiontest/gitactiontest/index.html # Change to the directory containing your HTML report 
         #     name: test-reports
 
-        - name: Deploy to GitHub Pages
-          run: |
-            git config --global user.email "komeershettyvinod@gmail.com"
-            git config --global user.name "vinodkomeershetty"
-            git checkout --orphan gh-pages
-            git rm -rf .
-            mv /home/runner/work/gitactiontest/gitactiontest/* .
-            git add .
-            git commit -m "Deploy HTML report to GitHub Pages"
-            git push -f origin gh-pages
+        # - name: Deploy to GitHub Pages
+        #   run: |
+        #     git config --global user.email "komeershettyvinod@gmail.com"
+        #     git config --global user.name "vinodkomeershetty"
+        #     git checkout --orphan gh-pages
+        #     git rm -rf .
+        #     mv /home/runner/work/gitactiontest/gitactiontest/* .
+        #     git add .
+        #     git commit -m "Deploy HTML report to GitHub Pages"
+        #     git push -f origin gh-pages
             
-        - name: Post the link to the report
-          if: always()
-          uses: Sibz/github-status-action@v1
-          with: 
-            authToken: ${{secrets.GITHUB_TOKEN}}
-            context: 'Test report'
-            sha: ${{github.event.pull_request.head.sha || github.sha}}
-            state: success
-            target_url: https://vinodkomeershetty.github.io/gitactiontest/index.html
+        # - name: Post the link to the report
+        #   if: always()
+        #   uses: Sibz/github-status-action@v1
+        #   with: 
+        #     authToken: ${{secrets.GITHUB_TOKEN}}
+        #     context: 'Test report'
+        #     sha: ${{github.event.pull_request.head.sha || github.sha}}
+        #     state: success
+        #     target_url: https://vinodkomeershetty.github.io/gitactiontest/index.html
