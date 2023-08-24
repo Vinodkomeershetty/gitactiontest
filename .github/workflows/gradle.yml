@@ -34,7 +34,7 @@ jobs:
            if: always()
            with:
                 name: test-report
-                path: build/GradleReports/
+                path: build/GradleReports/index.html
         - name: Dqwq
           if: always()
           uses: peaceiris/actions-gh-pages@v3
@@ -76,7 +76,7 @@ jobs:
         #   uses: peaceiris/actions-gh-pages@v3
         #   with:
         #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        #     publish_dir: /home/runner/work/gitactiontest/gitactiontest/ # Change to the directory containing your HTML report 
+        #     publish_dir: /home/runner/work/gitactiontest/gitactiontest/index.html # Change to the directory containing your HTML report 
         #     name: test-reports
 
         - name: Deploy to GitHub Pages
