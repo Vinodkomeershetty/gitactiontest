@@ -41,6 +41,9 @@ jobs:
         #   with:
         #    publish_dir: build/GradleReports # Adjust to the directory containing your built site
         #    github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+
            
     Publish-HTML-Report:
       needs: RunTests-and-Generate-Reports
@@ -70,7 +73,8 @@ jobs:
               github_token: ${{ secrets.GITHUB_TOKEN }}
               publish_branch: gh-pages
               publish_dir: results-history
-              keep_files: true  
+              keep_files: true
+              
           - name: Post the link to the report
             if: always()
             uses: Sibz/github-status-action@v1
