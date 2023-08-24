@@ -34,7 +34,7 @@ jobs:
            if: always()
            with:
                 name: test-report
-                path: ./build/GradleReports
+                path: ./build/GradleReports/
         # - name: Dqwq
         #   if: always()
         #   uses: peaceiris/actions-gh-pages@v3
@@ -62,7 +62,7 @@ jobs:
           uses: PavanMudigonda/html-reporter-github-pages@v1.0
           id: test-report
           with:
-            test_results: ./build/GradleReports
+            test_results: ./build/GradleReports/
             gh_pages: gh-pages
             results_history: results-history
           
@@ -95,7 +95,7 @@ jobs:
           with:
               test_results: ./build/GradleReports
               keep_reports: 20
-              external_repository: https://Vinodkomeershetty.github.io/gitactiontest
+              external_repository: https://Vinodkomeershetty.github.io/gitactiontest/
         # # Download the artifact
         # - name: Download HTML Report Artifact
         #   uses: actions/download-artifact@v2
