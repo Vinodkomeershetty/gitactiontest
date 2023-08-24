@@ -33,7 +33,7 @@ jobs:
            uses: actions/upload-artifact@v2
            if: always()
            with:
-                name: test-report
+                name: test-reportsssss
                 path: ./build/GradleReports/
         # - name: Dqwq
         #   if: always()
