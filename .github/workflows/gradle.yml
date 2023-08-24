@@ -83,12 +83,12 @@ jobs:
           run: |
             git config --global user.email "komeershettyvinod@gmail.com"
             git config --global user.name "vinodkomeershetty"
-            git checkout --orphan gh-pages
+            git checkout --orphan gh-pages+${{ github.run_number }}
             git rm -rf .
             mv /home/runner/work/gitactiontest/gitactiontest/* .
             git add .
             git commit -m "Deploy HTML report to GitHub Pages"
-            git push -f origin gh-pages
+            git push -f origin gh-pages+${{ github.run_number }}
             
         - name: Post the link to the report
           if: always()
