@@ -34,7 +34,7 @@ jobs:
            if: always()
            with:
                 name: test-report
-                path: build/
+                path: build/GradleReports
         # - name: Dqwq
         #   if: always()
         #   uses: peaceiris/actions-gh-pages@v3
@@ -62,7 +62,7 @@ jobs:
             uses: PavanMudigonda/html-reporter-github-pages@v1.0
             id: test-report
             with:
-              test_results: GradleReports
+              test_results: /home/runner/work/gitactiontest/gitactiontest/
               gh_pages: gh-pages
               results_history: results-history
 
@@ -83,7 +83,7 @@ jobs:
               context: 'Test report'
               state: 'success'
               sha: ${{github.event.pull_request.head.sha || github.sha}}
-              target_url: Vinodkomeershetty.github.io/gitactiontest/${{ github.run_number }}
+              target_url: https://Vinodkomeershetty.github.io/gitactiontest/${{ github.run_number }}
 
           - name: GH Pages Push
             uses: PavanMudigonda/html-reporter-github-pages/composite@v1.1
