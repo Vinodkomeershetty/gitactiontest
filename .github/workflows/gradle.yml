@@ -65,6 +65,11 @@ jobs:
               test_results: build/GradleReports
               gh_pages: gh-pages
               results_history: results-history
+          
+          - name: List Files in workspace
+            if: always()
+            run: |
+              ls -R;   
 
           - name: Publish Github Pages
             if: ${{ always() }}
@@ -90,7 +95,7 @@ jobs:
             with:
               test_results: build/GradleReports
               keep_reports: 20
-              external_repository: Vinodkomeershetty.github.io/gitactiontest
+              external_repository: https://Vinodkomeershetty.github.io/gitactiontest
         # # Download the artifact
         # - name: Download HTML Report Artifact
         #   uses: actions/download-artifact@v2
