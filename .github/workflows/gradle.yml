@@ -72,12 +72,24 @@ jobs:
       #       git push -u origin gh-pages
 
         # Publish the HTML report to GitHub Pages
-        - name: Publish to GitHub Pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-            publish_dir: /home/runner/work/gitactiontest/gitactiontest/ # Change to the directory containing your HTML report 
-            name: test-reports
+        # - name: Publish to GitHub Pages
+        #   uses: peaceiris/actions-gh-pages@v3
+        #   with:
+        #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        #     publish_dir: /home/runner/work/gitactiontest/gitactiontest/ # Change to the directory containing your HTML report 
+        #     name: test-reports
+
+        - name: Deploy to GitHub Pages
+          run: |
+            git config --global user.email "komeershettyvinod@gmail.com"
+            git config --global user.name "komeershettyvinod"
+            git checkout --orphan gh-pages
+            git rm -rf .
+            mv /home/runner/work/gitactiontest/gitactiontest/* .
+            git add .
+            git commit -m "Deploy HTML report to GitHub Pages"
+            git push -f origin gh-pages
+            
         - name: Post the link to the report
           if: always()
           uses: Sibz/github-status-action@v1
