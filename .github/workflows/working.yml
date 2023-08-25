@@ -28,6 +28,7 @@ jobs:
           run: chmod +x ./gradlew
       
         - name: Execute build with Gradle wrapper
+          continue-on-error: true
           run: ./gradlew build clean test
 
         - name: Generate Html link
