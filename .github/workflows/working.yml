@@ -59,7 +59,7 @@ jobs:
         - name: Deploy to GitHub Pages
           continue-on-error: true
           run: |
-            authToken: ${{secrets.GITHUB_TOKEN}}
+            github_token: ${{secrets.GITHUB_TOKEN}}
             # git config --global user.email "komeershettyvinod@gmail.com"
             # git config --global user.name "vinodkomeershetty"
             git checkout --orphan gh-pages
