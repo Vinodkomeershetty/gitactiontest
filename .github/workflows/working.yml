@@ -34,7 +34,7 @@ jobs:
            echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
           run: |
               echo '<a href="https://google.com">visit example</a>' > link.html
-              echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
+              echo "dsdsd" >> $GITHUB_STEP_SUMMARY
 
 
         -  name: Upload Artifacts
@@ -78,7 +78,8 @@ jobs:
             git add .
             git commit -m "Deploy HTML report to GitHub Pages"
             git push -f origin gh-pages
-            
+            echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+    
         - name: Post the link to the report
           if: always()
           uses: Sibz/github-status-action@v1
