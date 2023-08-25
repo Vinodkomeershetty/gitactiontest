@@ -74,6 +74,29 @@ jobs:
               echo "<a href="https://vinodkomeershetty.github.io/gitactiontest/index.html">Detailed  Results</a>"  >> $GITHUB_STEP_SUMMARY
               echo "<h6>df  Results</h6>"  >> $GITHUB_STEP_SUMMARY
 
+        - name: Download HTML Report Artifact
+          uses: actions/download-artifact@v2
+          with:
+               name: test-report
+        - name: Install pythib
+          uses: actions/setup-python@v3
+        - name: Install pandoc
+          run: |
+               sudo apt-get install -y pandoc
+        - name: Install pandora
+          run: |
+               pandoc -f html -t markdown_strict -o test-report.md  /home/runner/work/gitactiontest/gitactiontest/index.html
+               echo ":: test-report.md" 
+               echo  test-report.md
+               cat  ./test-report.md
+               cat "d'+ test-report.md
+                 echo ":: set-output name=test-report.md::$(cat $1)" 
+        - name: disp html summ in report page
+          run: |
+               chmod +x display-report.sh
+               ./display-report.sh test-report.md
+          id: display_report
+
     
         # - name: Post the link to the report
         #   if: always()
