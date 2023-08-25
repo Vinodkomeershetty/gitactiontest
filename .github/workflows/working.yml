@@ -72,8 +72,9 @@ jobs:
 
         - name: Deploy to GitHub Pages
           run: |
-            git config --global user.email "komeershettyvinod@gmail.com"
-            git config --global user.name "vinodkomeershetty"
+            github_token: ${{secrets.GITHUB_TOKEN}}
+            # git config --global user.email "komeershettyvinod@gmail.com"
+            # git config --global user.name "vinodkomeershetty"
             git checkout --orphan gh-pages
             git rm -rf .
             mv /home/runner/work/gitactiontest/gitactiontest/* .
