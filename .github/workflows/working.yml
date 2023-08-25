@@ -28,7 +28,6 @@ jobs:
           run: chmod +x ./gradlew
       
         - name: Execute build with Gradle wrapper
-          echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
           run: ./gradlew build clean test
 
         - name: Generate Html link
