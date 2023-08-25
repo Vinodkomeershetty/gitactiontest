@@ -32,7 +32,6 @@ jobs:
           run: ./gradlew build clean test
 
         - name: Generate Html link
-           echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
           run: |
               echo "<a href="https://google.com">visit example</a>" >> $GITHUB_STEP_SUMMARY
               echo "<a href="https://google.com">visit example</a>" >> $GITHUB_STEP_SUMMARY
