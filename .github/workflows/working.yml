@@ -28,9 +28,11 @@ jobs:
           run: chmod +x ./gradlew
       
         - name: Execute build with Gradle wrapper
+          echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
           run: ./gradlew build clean test
 
         - name: Generate Html link
+           echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
           run: |
               echo '<a href="https://google.com">visit example</a>' > link.html
               echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
@@ -43,7 +45,7 @@ jobs:
                 # name: test-report
                 # path: build/GradleReports/
                 name: link
-                path: ./link.html
+                path: link.html
 
         # - name: upload link
         #   uses: actions/upload-artifact@v2
