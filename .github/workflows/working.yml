@@ -41,7 +41,7 @@ jobs:
                 # name: test-report
                 # path: build/GradleReports/
                 name: link
-                path: link.html
+                path: ./link.html
 
         # - name: upload link
         #   uses: actions/upload-artifact@v2
