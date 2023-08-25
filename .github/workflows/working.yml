@@ -30,21 +30,29 @@ jobs:
         - name: Execute build with Gradle wrapper
           run: ./gradlew build clean test
 
+        - name: Generate Html link
+          run: |
+              echo '<a href="https://google.com">visit example</a>' > link.html
+              
         -  name: Upload Artifacts
            uses: actions/upload-artifact@v2
            if: always()
            with:
-                name: test-report
-                path: build/GradleReports/
-        - name: Generate Html link
-          run: |
-              echo '<a href="https://google.com">visit example</a>' > link.html
-        - name: upload link
-          uses: actions/upload-artifact@v2
-          with:
+                # name: test-report
+                # path: build/GradleReports/
                 name: link
                 path: link.html
-                
+
+        # - name: upload link
+        #   uses: actions/upload-artifact@v2
+        #   with:
+        #         name: link
+        #         path: link.html
+
+
+        - name: testing echooo
+          run: |
+              echo '<a href="https://google.com">visit example</a>' > link.html
         - name: Dqwq
           if: always()
           uses: peaceiris/actions-gh-pages@v3
