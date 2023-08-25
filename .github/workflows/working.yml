@@ -71,6 +71,7 @@ jobs:
       steps:
 
         - name: Deploy to GitHub Pages
+          continue-on-error: true
           run: |
             github_token: ${{secrets.GITHUB_TOKEN}}
             # git config --global user.email "komeershettyvinod@gmail.com"
