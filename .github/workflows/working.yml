@@ -34,8 +34,8 @@ jobs:
         - name: Generate Html link
            echo "{'<a href="https://google.com">visit example</a>'}" >> $GITHUB_STEP_SUMMARY
           run: |
-              echo <a href="https://google.com">visit example</a> >> $GITHUB_STEP_SUMMARY
-              echo '<a href="https://google.com">visit example</a>' >> $GITHUB_STEP_SUMMARY
+              echo "<a href="https://google.com">visit example</a>" >> $GITHUB_STEP_SUMMARY
+              echo "<a href="https://google.com">visit example</a>" >> $GITHUB_STEP_SUMMARY
               echo "dsdsd" >> $GITHUB_STEP_SUMMARY
 
 
@@ -91,3 +91,6 @@ jobs:
             sha: ${{github.event.pull_request.head.sha || github.sha}}
             state: success
             target_url: https://vinodkomeershetty.github.io/gitactiontest/index.html
+            run: |
+              echo target_url
+            
