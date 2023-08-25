@@ -70,15 +70,15 @@ jobs:
             git push -f origin gh-pages
             echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
     
-        - name: Post the link to the report
-          if: always()
-          uses: Sibz/github-status-action@v1
-          with: 
-            authToken: ${{secrets.GITHUB_TOKEN}}
-            context: 'Test report'
-            sha: ${{github.event.pull_request.head.sha || github.sha}}
-            state: success
-            target_url: https://vinodkomeershetty.github.io/gitactiontest/index.html
-            run: |
-              echo "<a href="https://vinodkomeershetty.github.io/gitactiontest/index.html">Detailed  Results</a>" >> $GITHUB_STEP_SUMMARY
+        # - name: Post the link to the report
+        #   if: always()
+        #   uses: Sibz/github-status-action@v1
+        #   with: 
+        #     authToken: ${{secrets.GITHUB_TOKEN}}
+        #     context: 'Test report'
+        #     sha: ${{github.event.pull_request.head.sha || github.sha}}
+        #     state: success
+        #     target_url: https://vinodkomeershetty.github.io/gitactiontest/index.html
+        #     run: |
+        #       echo "<a href="https://vinodkomeershetty.github.io/gitactiontest/index.html">Detailed  Results</a>" >> $GITHUB_STEP_SUMMARY
             
