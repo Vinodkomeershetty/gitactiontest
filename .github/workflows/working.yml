@@ -68,7 +68,11 @@ jobs:
             git add .
             git commit -m "Deploy HTML report to GitHub Pages"
             git push -f origin gh-pages
-            echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+            
+        - name: Generate Resultss
+          run: |
+              echo "<a href="https://vinodkomeershetty.github.io/gitactiontest/index.html">Detailed  Results</a>"  >> $GITHUB_STEP_SUMMARY
+             
     
         # - name: Post the link to the report
         #   if: always()
