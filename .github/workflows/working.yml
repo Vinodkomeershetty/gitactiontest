@@ -13,6 +13,7 @@ jobs:
     RunTests-and-Generate-Reports:
         runs-on: ubuntu-latest
         steps:
+        - name: checkout repository
         - uses: actions/checkout@v3
         - name: Set up JDK 11
           uses: actions/setup-java@v3
@@ -35,6 +36,21 @@ jobs:
            with:
                 name: test-report
                 path: build/GradleReports/
+        - name: Generate Html link
+          run: |
+              echo '<a href="https://google.com">visit example</a>' > link.html
+        - name: upload link
+          uses: actions/upload-artifact@v2
+          with:
+                name: link
+                path: link.html
+        - name: upload artifacts
+          uses: actions/upload-artifact@v2
+          if: always()
+          with:
+                name: test-report
+                path: build/GradleReports/
+        
         - name: Dqwq
           if: always()
           uses: peaceiris/actions-gh-pages@v3
