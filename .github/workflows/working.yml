@@ -41,7 +41,7 @@ jobs:
            if: always()
            with:
                 name: test-report
-                path: build/GradleReports/
+                path: GradleReports
                 
         - name: Integrate with Gradle Reports
           if: always()
