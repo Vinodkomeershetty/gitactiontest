@@ -85,30 +85,37 @@ jobs:
           # workflow_name: ${{ github.workflow }} # Level 3 Folder Structure you like
           # env: QA # Level 4 Folder Structure you like
 
-        - name: Download HTML Report Artifact
-          uses: actions/download-artifact@v2
-          with:
-               name: test-report
-        - name: Install pythib
-          uses: actions/setup-python@v3
-        - name: Install pandoc
+        - name: Generate Resultss
           run: |
-               sudo apt-get install -y pandoc
-        - name: Install pandora
-          continue-on-error: true
-          run: |
-               pandoc -f html -t markdown_strict -o test-report.md  /home/runner/work/gitactiontest/gitactiontest/index.html
-               echo ":: test-report.md" 
-               echo  test-report.md
-               cat  ./test-report.md
-               cat "d'+ test-report.md
-                 echo ":: set-output name=test-report.md::$(cat $1)" 
-        - name: disp html summ in report page
-          continue-on-error: true
-          run: |
-               chmod +x display-report.sh
-               ./display-report.sh test-report.md
-          id: display_report
+              echo "<a href="https://vinodkomeershetty.github.io/gitactiontest/index.html">Detailed  Results</a>"  >> $GITHUB_STEP_SUMMARY
+              echo '${{ env.GITHUB_PAGES_WEBSITE_URL }}/${github.run_number}/index.html'  >> $GITHUB_STEP_SUMMARY
+              echo '${{ env.GITHUB_PAGES_WEBSITE_URL }}/${github.run_number}/index.html'
+          
+
+        # - name: Download HTML Report Artifact
+        #   uses: actions/download-artifact@v2
+        #   with:
+        #        name: test-report
+        # - name: Install pythib
+        #   uses: actions/setup-python@v3
+        # - name: Install pandoc
+        #   run: |
+        #        sudo apt-get install -y pandoc
+        # - name: Install pandora
+        #   continue-on-error: true
+        #   run: |
+        #        pandoc -f html -t markdown_strict -o test-report.md  /home/runner/work/gitactiontest/gitactiontest/index.html
+        #        echo ":: test-report.md" 
+        #        echo  test-report.md
+        #        cat  ./test-report.md
+        #        cat "d'+ test-report.md
+        #          echo ":: set-output name=test-report.md::$(cat $1)" 
+        # - name: disp html summ in report page
+        #   continue-on-error: true
+        #   run: |
+        #        chmod +x display-report.sh
+        #        ./display-report.sh test-report.md
+        #   id: display_report
 
     
         # - name: Post the link to the report
