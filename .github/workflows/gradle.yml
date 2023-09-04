@@ -6,15 +6,32 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
 name: Java CI with Gradle
-on:
-  push:
-    branches: [ "master" ]
+# on:
+#   push:
+#     branches: [ "master" ]
 
+#   workflow_dispatch:
+#     inputs:
+#       environment:
+#         description: 'Environment to run tests against'
+#         type: choice
+#         options:
+#           - saucechrome
+#           - chrome
+on:
+  pull_request:
+    branches: [ "test" ]
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to run tests against'
+      serverurl:
+        description: 'Provide the SCPO UI URL to run the test against'
+        required: true
+      suiteFile:
+        description: 'Provide the Suite File to run the tests'
+        required: true
+      browserType:
         type: choice
+        description: 'Select the browser for executing the tests'
         options:
           - saucechrome
           - chrome
