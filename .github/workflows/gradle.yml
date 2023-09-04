@@ -20,7 +20,7 @@ name: Java CI with Gradle
 #           - chrome
 on:
   push:
-    branches: [ "NewBuild" ]
+    branches: [ "master" ]
   workflow_dispatch:
     inputs:
       serverurl:
