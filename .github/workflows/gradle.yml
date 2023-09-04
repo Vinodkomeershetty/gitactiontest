@@ -19,8 +19,8 @@ name: Java CI with Gradle
 #           - saucechrome
 #           - chrome
 on:
-  pull_request:
-    branches: [ "test" ]
+  push:
+    branches: [ "NewBuild" ]
   workflow_dispatch:
     inputs:
       serverurl:
