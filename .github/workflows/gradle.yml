@@ -14,7 +14,10 @@ on:
     inputs:
       environment:
         description: 'Environment to run tests against'
-        type: environment
+        type: choice
+        options:
+          - saucechrome
+          - chrome
 jobs:
     RunTests-and-Generate-Reports:
         runs-on: ubuntu-latest
