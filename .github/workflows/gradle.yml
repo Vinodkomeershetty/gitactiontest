@@ -24,10 +24,10 @@ on:
   workflow_dispatch:
     inputs:
       serverurl:
-        description: 'Provide the SCPO UI URL to run the test against'
+        description: 'Provide the  UI URL to run the test against'
         required: true
       suiteFile:
-        description: 'Provide the Suite File to run the tests'
+        description: 'Provide the  File to run the tests'
         required: true
       browserType:
         type: choice
