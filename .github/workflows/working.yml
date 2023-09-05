@@ -74,16 +74,27 @@ jobs:
               echo "<a href="https://vinodkomeershetty.github.io/gitactiontest/index.html">Detailed  Results</a>"  >> $GITHUB_STEP_SUMMARY
               echo "<h6>df  Results</h6>"  >> $GITHUB_STEP_SUMMARY
 
+        # - name: ANY REPROT - GH Pages Push - SAME REPO
+        #   uses: tr/cicd_gh-actions-gh-pages@v1.8
+        #   with:
+        #     test_results: build/GradleReports/
+        #     keep_reports: 20
+        #     gh_pages: gh_pages # BRANCH NAME you like
+        #   # subfolder: docs  # Level 1 Folder Structure you like
+        #   # tool_name: cucumber # Level 2 Folder Structure you like
+        #   # workflow_name: ${{ github.workflow }} # Level 3 Folder Structure you like
+        #   # env: QA # Level 4 Folder Structure you like
+
         - name: ANY REPROT - GH Pages Push - SAME REPO
-          uses: tr/cicd_gh-actions-gh-pages@v1.8
+          uses: PavanMudigonda/html-reporter-github-pages@v1.2
           with:
             test_results: build/GradleReports/
             keep_reports: 20
             gh_pages: gh_pages # BRANCH NAME you like
-          # subfolder: docs  # Level 1 Folder Structure you like
-          # tool_name: cucumber # Level 2 Folder Structure you like
-          # workflow_name: ${{ github.workflow }} # Level 3 Folder Structure you like
-          # env: QA # Level 4 Folder Structure you like
+            # subfolder: docs  # Level 1 Folder Structure you like
+            # tool_name: cucumber # Level 2 Folder Structure you like
+            # workflow_name: ${{ github.workflow }} # Level 3 Folder Structure you like
+            # env: QA # Level 4 Folder Structure you like
 
         - name: Generate Resultss
           run: |
