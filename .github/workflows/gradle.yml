@@ -51,10 +51,10 @@ jobs:
             gradle-version: 7.4.2     ### This version will be installed and added to PATH, so used for cache-cleanup
         - name: Make gradlew executable
           run: |
-            resp = $(curl -X GET "https://www.google.com")
-            echo "rrrrrrrrr"+ $resp
-            echo "r123"+ $resp
-            chmod +x ./gradlew
+              resp = $(curl -X GET "https://www.google.com")
+              echo "rrrrrrrrr"+ $resp
+              echo "r123"+ $resp
+              chmod +x ./gradlew
 
       
         - name: Execute build with Gradle wrapper
