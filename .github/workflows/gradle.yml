@@ -52,9 +52,8 @@ jobs:
         - name: Make gradlew executable
           run: |
             # chmod +x ./gradlew
-            curl -X GET "https://34rssfc.com"
-            response = curl -X GET "https://google.com"
-            echo "rrrrrrrrrrrrrrrrrrr"+response
+            curl -X GET "https://www.google.com"
+            echo "rrrrrrrrr"+response
       
         - name: Execute build with Gradle wrapper
           run: ./gradlew build clean test
