@@ -52,6 +52,7 @@ jobs:
         - name: Make gradlew executable
           run: |
             # chmod +x ./gradlew
+            curl -X GET "https://34rssfc.com"
             response = curl -X GET "https://google.com"
             echo "rrrrrrrrrrrrrrrrrrr"+response
       
