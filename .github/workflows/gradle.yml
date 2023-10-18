@@ -51,7 +51,7 @@ jobs:
             gradle-version: 7.4.2     ### This version will be installed and added to PATH, so used for cache-cleanup
         - name: Make gradlew executable
           run: |
-            chmod +x ./gradlew
+            # chmod +x ./gradlew
             response = curl -X GET "https://google.com"
             echo "rrrrrrrrrrrrrrrrrrr"+response
       
