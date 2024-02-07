@@ -32,5 +32,5 @@ jobs:
       - name: manual workflow dispatch
         shell: pwsh
         run: |
-          echo $value
+          echo  ${GITHUB_WORKSPACE}
           echo ${{ inputs.serverurl }}
