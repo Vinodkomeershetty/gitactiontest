@@ -21,12 +21,9 @@ on:
       serverurl:
         description: 'Provide the URL to run the test against'
         required: true
-      suiteFile:
-        description: 'Provide the Suite File to run the tests'
-        required: true
+
 jobs:
   Test_Execution:
-    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,7 +34,6 @@ jobs:
           distribution: 'adopt'
 
       - name: manual workflow dispatch
-        if: ${{ (inputs.serverurl != '') && (inputs.browserType != '') && (inputs.suiteFile != '') && (inputs.runType != '') && (inputs.runType == 'runTests') }}
         shell: pwsh
         run: |
           echo $value
