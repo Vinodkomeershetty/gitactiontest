@@ -12,10 +12,6 @@ env:
   SAUCEPASSWD: ${{secrets.SAUCEPWD}}
 
 on:
-  pull_request:
-    branches: [ "NewBuild" ]
-  schedule:
-    - cron: "30 11 * * *"
   workflow_dispatch:
     inputs:
       serverurl:
