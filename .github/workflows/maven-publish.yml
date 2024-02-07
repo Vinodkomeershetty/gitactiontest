@@ -32,5 +32,6 @@ jobs:
       - name: manual workflow dispatch
         shell: pwsh
         run: |
-          echo  ${GITHUB_WORKSPACE}
+          echo  "wsp: ${GITHUB_WORKSPACE}"
+          echo  GITHUB_WORKSPACE
           echo ${{ inputs.serverurl }}
