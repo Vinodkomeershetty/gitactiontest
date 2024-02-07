@@ -1,0 +1,44 @@
+#This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+
+name:  Automation for sample fitnesse
+
+env:
+  SAUCEUN: ${{secrets.SAUCEUSERNAME}}
+  SAUCEPASSWD: ${{secrets.SAUCEPWD}}
+
+on:
+  pull_request:
+    branches: [ "NewBuild" ]
+  schedule:
+    - cron: "30 11 * * *"
+  workflow_dispatch:
+    inputs:
+      serverurl:
+        description: 'Provide the URL to run the test against'
+        required: true
+      suiteFile:
+        description: 'Provide the Suite File to run the tests'
+        required: true
+jobs:
+  Test_Execution:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: manual workflow dispatch
+        if: ${{ (inputs.serverurl != '') && (inputs.browserType != '') && (inputs.suiteFile != '') && (inputs.runType != '') && (inputs.runType == 'runTests') }}
+        shell: pwsh
+        run: |
+          echo $value
+          echo ${{ inputs.serverurl }}
